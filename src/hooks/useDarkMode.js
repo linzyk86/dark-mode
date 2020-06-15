@@ -1,16 +1,22 @@
 import React, {useState,useEffect} from 'react';
 import {useLocalStorage} from './useLocalStorage';
+import '../styles.scss';
 
-export const useDarkMode =(initialVallues, key)=>{
-    const[values, setValues] = useLocalStorage(initialValues, key);
+export const useDarkMode =(initialValues, key)=>{
+    const[toggle, setToggle] = useLocalStorage(initialValues, key);
 useEffect(()=>{
-    if(values === true){
-        body.classList.add('dark-mode');
+
+    if(toggle === true){
+        document.body.classList.add('dark-mode');
+        console.log('true');
     } else{
-        body.classList.remove('dark-mode');
+       document.body.classList.remove('dark-mode');
+       console.log('false');
     }
-}
-//not sure what goes here..?[]
-);
-return[values, setValues];
+},[toggle]);
+  const toggleSwitch = e => {
+        setToggle(!toggle);
+    };
+
+return[toggle, toggleSwitch];
 }
